@@ -3,7 +3,7 @@ import discord
 from datetime import datetime
 client = discord.Client()
 
-token = "NjY4MDUxNTUyNDM0NjUxMTY2.XiLwDA.6b99NU5PzBsUjZ6dph4Caqf5Ch4"
+token = "NjY4MDUxNTUyNDM0NjUxMTY2.XiMDuA.s7d2y-h5CkUKS1NX8fDx6XAEOtU"
 @client.event
 async def on_ready():
     print("다음으로 로그인합니다")
@@ -18,15 +18,36 @@ async def on_message(message):
     if message.content.startswith('!작동'):
         channel = message.channel
         await channel.send('길드 알람 작동을 시작합니다')
+        flag1 = 0
+        flag2 = 0
+        flag3 = 0
+        boss = 0
         while 1:
             now = datetime.now()
-            if now.minute == 50:
-                if now.hour == 11 or now.hour == 18 or now.hour == 20:
-                    await channel.send('모두 플래그 하러 갑시다!!')
             if now.minute == 30:
-                if now.housr == 23:
+                if now.hour == 11 and flag1 == 0:
+                    await channel.send('모두 플래그 하러 갑시다!!')
+                    flag1 = 1
+                    flag2 = 0
+                    flag3 = 0
+                    boss = 0
+                if now.hour == 18 and flag2 == 0:
+                    await channel.send('모두 플래그 하러 갑시다!!')
+                    flag1 = 0
+                    flag2 = 1
+                    flag3 = 0
+                    boss = 0
+                if now.hour == 22 and flag3 == 0:
+                    await channel.send('모두 플래그 하러 갑시다!!')
+                    flag1 = 0
+                    flag2 = 0
+                    flag3 = 1
+                    boss = 0
+            if now.minute == 31:
+                if now.hour == 22 and boss == 0:
                     await channel.send('다들 오늘 길보 빼먹지 않고 돌았죠?! :)')
-            if now.hour == 21:
-                if now.minute == 45:
-                    await channel.send('테스트 알람입니다')
+                    boss = 1
+                    flag1 = 0
+                    flag2 = 0
+                    flag3 = 0
 client.run(token)

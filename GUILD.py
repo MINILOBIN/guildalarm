@@ -3,7 +3,7 @@ import discord
 from datetime import datetime
 client = discord.Client()
 
-token = "NjY4MDUxNTUyNDM0NjUxMTY2.XiMDuA.s7d2y-h5CkUKS1NX8fDx6XAEOtU"
+token = "NjY4MDUxNTUyNDM0NjUxMTY2.XiMNBg.r0NGqSyYWUmg5uRgLQGULJIHCxQ"
 @client.event
 async def on_ready():
     print("다음으로 로그인합니다")
